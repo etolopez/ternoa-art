@@ -1,26 +1,39 @@
-import React, { useContext } from "react";
-import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
+import React, { useContext, useEffect } from "react";
 import "../../styles/home.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import Header from "../component/header";
+import InfoSection from "../component/infoSection";
+import ParticlesBackground from "../component/ParticlesBackground";
+import MakePost from "../component/MakePost";
 
 export const Home = () => {
-	const { store, actions } = useContext(Context);
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
 
-	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!!</h1>
-			<p>
-				<img src={rigoImageUrl} />
-			</p>
-			<div className="alert alert-info">
-				{store.message || "Loading message from the backend (make sure your python backend is running)..."}
-			</div>
-			<p>
-				This boilerplate comes with lots of documentation:{" "}
-				<a href="https://github.com/4GeeksAcademy/react-flask-hello/tree/95e0540bd1422249c3004f149825285118594325/docs">
-					Read documentation
-				</a>
-			</p>
-		</div>
-	);
+  return (
+    <div>
+      <div className="mt-5">
+        <section>
+          <Header />
+        </section>
+        <section>
+          <h1 className="text-center" data-aos="fade-left">
+            Featured Creators
+          </h1>
+        </section>
+        <section data-aos="fade-bottom">
+          <InfoSection />
+        </section>
+        <section data-aos="fade-right">
+          <h1 className="text-center">Art</h1>
+        </section>
+        <section>
+          <MakePost />
+        </section>
+      </div>
+      <ParticlesBackground />
+    </div>
+  );
 };
