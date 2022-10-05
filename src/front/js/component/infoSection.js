@@ -33,8 +33,11 @@ const InfoSection = () => {
                     Recognized Crypto ilustrator, Fullstack-Web Developer,
                     collector, and all-time amazing person.
                   </p>
-                  <a href="https://twitter.com/notifications" class="card-link">
-                    <small>Go to his LinkedIn Doxx -></small>
+                  <a
+                    href="https://twitter.com/notifications"
+                    className="card-link"
+                  >
+                    <small>Go to his LinkedIn Doxx</small>
                   </a>
                 </div>
               </div>
@@ -67,9 +70,9 @@ const InfoSection = () => {
                   <p className="text-black">
                     <a
                       href="https://twitter.com/notifications"
-                      class="card-link"
+                      className="card-link"
                     >
-                      <small>Go to his Twitter -></small>
+                      <small>Go to his Twitter -</small>
                     </a>
                   </p>
                 </div>
