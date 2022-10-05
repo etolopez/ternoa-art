@@ -51,44 +51,42 @@ const MakePost = () => {
 
   return (
     <div className="container">
-      <div className="col-sm-1 col-md-6 m-auto mb-4">
-        <Form onSubmit={submitHandler}>
-          <Form.Group>
-            <Form.Control
-              className="mb-5"
-              type="file"
-              onChange={archiveHandler}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label className="mb-2">Name the image</Form.Label>
-            <Form.Control
-              type="text"
-              name="nombre"
-              placeholder="image name (for reference)"
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label className="mt-2">Name your Post</Form.Label>
-            <Form.Control type="text" name="title" placeholder="Post title" />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label className="mt-2">
-              Write something cool about the art!
-            </Form.Label>
-            <Form.Control
-              className="py-5"
-              type="text"
-              name="content"
-              placeholder="Write a post"
-            />
-          </Form.Group>
+      <Form onSubmit={submitHandler}>
+        <Form.Group>
+          <Form.Control
+            className="mb-5"
+            type="file"
+            onChange={archiveHandler}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label className="mb-2">Name the image</Form.Label>
+          <Form.Control
+            type="text"
+            name="nombre"
+            placeholder="image name (for reference)"
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label className="mt-2">Name your Post</Form.Label>
+          <Form.Control type="text" name="title" placeholder="Post title" />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label className="mt-2">
+            Write something cool about the art!
+          </Form.Label>
+          <Form.Control
+            className="py-5"
+            type="text"
+            name="content"
+            placeholder="Write a post"
+          />
+        </Form.Group>
 
-          <Button variant="primary" className="mt-4" type="submit">
-            Post
-          </Button>
-        </Form>
-      </div>
+        <Button variant="primary" className="mt-4" type="submit">
+          Post
+        </Button>
+      </Form>
 
       <div className="card-group mt-5">
         {docus.map((doc) => (

@@ -4,12 +4,8 @@ import himage2 from "../../img/c2.jpg";
 import himage3 from "../../img/c3.jpg";
 
 const style1 = {
-  height: "50px",
+  height: "12rem",
   objectFit: "cover",
-};
-
-const style2 = {
-  maxWidth: "840px",
 };
 
 const InfoSection = () => {
@@ -17,16 +13,12 @@ const InfoSection = () => {
     <div className="container">
       <div className="row text-center" data-aos="fade-right">
         <div className="col-md-6">
-          <div className="card featured mb-3" style={style2}>
-            <div className="row g-0">
-              <div className="col-md-4">
-                <img
-                  src={himage2}
-                  className="img-fluid rounded-start"
-                  alt="..."
-                />
+          <div className="card featured mb-3">
+            <div className="row ">
+              <div className="col-md-5 m-0 p-1">
+                <img src={himage2} className="img-fluid rounded" alt="..." />
               </div>
-              <div className="col-md-8">
+              <div className="col-md-7">
                 <div className="card-body">
                   <h5 className="card-title text-black">@OxEto</h5>
                   <p className="card-text text-black">
@@ -49,23 +41,17 @@ const InfoSection = () => {
           <div
             href="https://twitter.com/etohacearte"
             className="card featured mb-3"
-            style={style2}
           >
-            <div className="row g-0">
-              <div className="col-md-4">
-                <img
-                  src={himage3}
-                  className="img-fluid rounded-start"
-                  alt="..."
-                />
+            <div className="row">
+              <div className="col-md-5 m-0 p-1">
+                <img src={himage3} className="img-fluid rounded" alt="..." />
               </div>
-              <div className="col-md-8">
+              <div className="col-md-7">
                 <div className="card-body">
                   <h5 className="card-title text-black">@etohacearte</h5>
                   <p className="card-text text-black">
-                    3D Artist & illustrator in the Solana Blockchain. Most
-                    recognized by his amazing talent at learning things faster
-                    than a Solana Transaction.
+                    Artist, most recognized by his amazing talent at learning
+                    things faster than a Solana transaction.
                   </p>
                   <p className="text-black">
                     <a

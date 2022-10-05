@@ -22,7 +22,7 @@ export const Navbar = () => {
   return (
     <nav className="navbar text-light">
       <div className="container">
-        <div className="col-md-6 m-auto">
+        <div className="col-md-6 float-left">
           <Link to="/">
             <img src={soldb} />
           </Link>

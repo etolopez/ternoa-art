@@ -4,6 +4,6 @@ const db = getFirestore(app);
 
 export default function deletePost() {
   const collectionRef = collection(db, "archive");
-  const docuRef = doc(collectionRef);
+  const docuRef = doc(collectionRef, doc.id);
   deleteDoc(docuRef);
 }
