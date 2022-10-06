@@ -10,7 +10,7 @@ const style1 = {
 
 const InfoSection = () => {
   return (
-    <div className="container">
+    <div name="info" className="container">
       <div className="row text-center" data-aos="fade-right">
         <div className="col-md-6">
           <div className="card featured mb-3">

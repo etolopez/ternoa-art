@@ -3,7 +3,6 @@ import loginEmailPassword from "../../../functions/loginEmailPassword";
 import { Container, Form, Button, Stack } from "react-bootstrap";
 import { useState } from "react";
 import { app } from "../../../firebase/fb.js";
-import firebase from "../../../firebase/fb.js";
 
 import {
   getAuth,
@@ -34,25 +33,23 @@ function Login() {
     await loginEmailPassword(correo, contra);
 
     if (estaRegistrandose) {
-      //si se registra
       const usuario = await createUserWithEmailAndPassword(
         auth,
         correo,
         contra
       );
     } else {
-      // si está iniciando sesión
       signInWithEmailAndPassword(auth, correo, contra);
     }
   }
 
   return (
-    <div className="container m-auto">
+    <div name="login" className="container m-auto">
       <div className="container-fluid">
         {logBtn ? (
           <div className="text-center mt-4">
             <button className="btn btn-primary" onClick={handleLoginBtn}>
-              Sign In
+              Sign In to Create Posts
             </button>
           </div>
         ) : (
@@ -81,20 +78,11 @@ function Login() {
               </Form>
 
               <Button
-                variant="primary"
-                type="submit"
-                style={{ width: "300px" }}
-                onClick={() => signInWithRedirect(auth, googleProvider)}
-              >
-                Sign in with Google
-              </Button>
-
-              <Button
                 style={{ width: "300px" }}
                 variant="secondary"
                 onClick={() => setEstaRegistrandose(!estaRegistrandose)}
               >
-                {estaRegistrandose ? "Sign in" : "Regístrate"}
+                {estaRegistrandose ? "Sign in" : "Register"}
               </Button>
             </Stack>
           </div>

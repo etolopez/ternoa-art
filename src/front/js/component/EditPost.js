@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { app } from "../../../firebase/fb.js";
-import { Form, Button } from "react-bootstrap";
+import { Modal, Stack, Form, Button } from "react-bootstrap";
 
-const MakePost = () => {
+const EditPost = () => {
   // const [post, setPost] = useState(false);
   const [urlArchive, setUrlArchive] = useState("");
   const [docus, setDocus] = useState([]);
@@ -49,6 +49,19 @@ const MakePost = () => {
 
   return (
     <div className="container">
+      
+       <Modal
+      show={isModalEditar}
+      onHide={() => {
+        setIsModalEditar(false);
+        setProductoEditar(null);
+      }}
+    >
+
+       <Modal.Header>
+        <Modal.Title>Editar producto</Modal.Title>
+      </Modal.Header>
+
       <Form onSubmit={submitHandler}>
         <Form.Group>
           <Form.Control
@@ -85,8 +98,23 @@ const MakePost = () => {
           Post
         </Button>
       </Form>
+      <Button
+          variant="secondary"
+          onClick={() => {
+            setIsModalEditar(false);
+            setProductoEditar(null);
+          }}
+        >
+          Cancelar
+        </Button>
+        <Button variant="primary" onClick={editarProductoModal}>
+          Editar
+        </Button>
+      </Modal.Footer>
+    </Modal>
+
     </div>
   );
 };
 
-export default MakePost;
+export default EditPost;

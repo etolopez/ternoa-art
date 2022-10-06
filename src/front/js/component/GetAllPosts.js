@@ -1,17 +1,9 @@
-import React from "react";
-import AOS from "aos";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { app } from "../../../firebase/fb.js";
 import deletePost from "../../../functions/deletePost.js";
 
-const GetAllPosts = ({ user }) => {
+const GetAllPosts = () => {
   const [docus, setDocus] = useState([]);
-
-  function actualizarPosts() {
-    GetAllPosts().then((docus) => {
-      setDocus(docus);
-    });
-  }
 
   useEffect(() => {
     let docs = app
@@ -22,38 +14,44 @@ const GetAllPosts = ({ user }) => {
     docs.then((data) => setDocus(data));
   }, []);
 
+  function refereshPosts() {
+    setDocus(docus);
+    window.location = "/";
+  }
+
   return (
     <div className="container">
       <div className="card-group mt-5">
-        {docus.map((doc, index) => (
+        {docus.map((post, index) => (
           <div className="col-md-6 p-4" data-aos="fade-left">
             <div className="card mb-3">
-              <img src={doc.url} className="card-img-top text-dark" />
+              <img src={post.url} className="card-img-top text-dark" />
               <div className="card-body text-dark row">
                 <div className="col-1">
                   <h2>{index + 1}</h2>
                 </div>
                 <div className="col-11">
-                  <h4 className="card-title text-dark">{doc.title}</h4>
-                  <p className="card-text text-dark">{doc.content}</p>
+                  <h4 className="card-title text-dark">{post.title}</h4>
+                  <p className="card-text text-dark">{post.content}</p>
                 </div>
               </div>
-              {user ? (
-                <div className="text-center">
+              <div className="row text-center">
+                <div className="col">
                   <button className="btn btn-secondary">Edit</button>
+                </div>
+                <div className="col">
                   <button
                     className="btn btn-danger"
                     onClick={() => {
-                      deletePost(docus);
-                      actualizarPosts();
+                      deletePost(post).then((confirmed) => {
+                        refereshPosts();
+                      });
                     }}
                   >
                     Delete
                   </button>
                 </div>
-              ) : (
-                ""
-              )}
+              </div>
             </div>
           </div>
         ))}
