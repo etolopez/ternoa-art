@@ -53,12 +53,7 @@ function Login() {
             </button>
           </div>
         ) : (
-          <div className="col-sm-1 col-md-6 m-auto mb-4">
-            <button className="btn btn-primary" onClick={handleLoginBtn}>
-              Cancel
-            </button>
-
-            <h1>Create Posts</h1>
+          <div className="col-sm-1 col-md-6 m-auto">
             <Stack gap={3}>
               <h1>{estaRegistrandose ? "Register" : "Sign in"}</h1>
               <Form onSubmit={submitHandler}>
@@ -71,20 +66,31 @@ function Login() {
                   <Form.Label>Password</Form.Label>
                   <Form.Control type="password" placeholder="Password" />
                 </Form.Group>
-
-                <Button variant="dark" type="submit">
-                  {estaRegistrandose ? "Register" : "Sign in"}
-                </Button>
+                <div className="text-center">
+                  <Button
+                    variant="dark"
+                    type="submit"
+                    style={{ width: "300px", backgroundColor: "blue" }}
+                  >
+                    {estaRegistrandose ? "Register" : "Sign in"}
+                  </Button>
+                </div>
               </Form>
-
-              <Button
-                style={{ width: "300px" }}
-                variant="secondary"
-                onClick={() => setEstaRegistrandose(!estaRegistrandose)}
-              >
-                {estaRegistrandose ? "Sign in" : "Register"}
-              </Button>
+              <div className="text-center">
+                <Button
+                  style={{ width: "300px" }}
+                  variant="secondary"
+                  onClick={() => setEstaRegistrandose(!estaRegistrandose)}
+                >
+                  {estaRegistrandose ? "Sign in" : "Register"}
+                </Button>
+              </div>
             </Stack>
+            <div className="text-center">
+              <button className="btn btn-danger my-4" onClick={handleLoginBtn}>
+                Cancel
+              </button>
+            </div>
           </div>
         )}
       </div>

@@ -19,7 +19,7 @@ const Header = () => {
           <h1>The #1 Solana Art Blog</h1>
           <h2>Open Source Showcase</h2>
           <button className="btn-lg btn-success mt-2 rounded-pill">
-            <Link to="login" smooth={true} offset={-100} duration={200}>
+            <Link to="info" smooth={true} offset={-100} duration={200}>
               Go to art
             </Link>
           </button>
