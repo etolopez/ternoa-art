@@ -49,7 +49,7 @@ function Login() {
         {logBtn ? (
           <div className="text-center mt-4">
             <button className="btn btn-primary" onClick={handleLoginBtn}>
-              Sign In to Create Posts
+              Sign In/Register to Create Posts
             </button>
           </div>
         ) : (

@@ -42,10 +42,10 @@ const GetAllPosts = ({
                   <p className="card-text text-dark">{post.content}</p>
                 </div>
               </div>
-              <div className="row text-center">
+              <div className="row text-center my-4">
                 <div className="col">
                   <button
-                    className="btn btn-danger"
+                    className="btn btn-secondary"
                     onClick={() => {
                       setEditPost({ ...post });
                       setIsModalEdit(true);

@@ -60,14 +60,17 @@ export const Home = () => {
               </h3>
               <ul className="m-auto py-4">
                 <li>
-                  The artist. was he/she kind? Did he message you? Do you see a
-                  cool trayectory for him/her?
+                  <strong>The artist. </strong> was he/she kind? Did he message
+                  you? Do you see a cool trayectory for him/her?
                 </li>
                 <li>
-                  The art. What you liked the most, is the style engaging? What
-                  emotions are most present.
+                  <strong>The art. </strong> What you liked the most, is the
+                  style engaging? What emotions are most present.
                 </li>
-                <li>The</li>
+                <li>
+                  <strong>The experience. </strong> Did he/she posted about the
+                  sale and mentioned you? Do you feel included as a collector?
+                </li>
               </ul>
               <hr></hr>
             </section>
