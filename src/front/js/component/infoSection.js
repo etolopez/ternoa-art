@@ -26,7 +26,7 @@ const InfoSection = () => {
                     collector, and all-time amazing person.
                   </p>
                   <a
-                    href="https://twitter.com/notifications"
+                    href="https://www.linkedin.com/in/etolopez"
                     className="card-link"
                   >
                     <small>Go to his LinkedIn Doxx</small>

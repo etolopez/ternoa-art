@@ -10,6 +10,7 @@ import GetAllPosts from "../component/GetAllPosts";
 import Login from "../component/login";
 import Welcome from "../component/welcome";
 import GetPosts from "../component/GetPosts";
+import EditPost from "../component/EditPost.js";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { app } from "../../../firebase/fb";
 
@@ -17,6 +18,8 @@ const auth = getAuth(app);
 
 export const Home = () => {
   const [user, setUser] = useState(null);
+  const [isModalEdit, setIsModalEdit] = useState(false);
+  const [editPost, setEditPost] = useState(null);
 
   onAuthStateChanged(auth, (firebaseUser) => {
     if (firebaseUser) {
@@ -69,10 +72,23 @@ export const Home = () => {
               <hr></hr>
             </section>
             <section>
-              <MakePost />
+              <MakePost user={user} />
             </section>
             <section>
-              <GetAllPosts />
+              <EditPost
+                user={user}
+                isModalEdit={isModalEdit}
+                setIsModalEdit={setIsModalEdit}
+                editPost={editPost}
+                setEditPost={setEditPost}
+              />
+              <GetAllPosts
+                user={user}
+                isModalEdit={isModalEdit}
+                setIsModalEdit={setIsModalEdit}
+                editPost={editPost}
+                setEditPost={setEditPost}
+              />
             </section>
           </div>
         ) : (

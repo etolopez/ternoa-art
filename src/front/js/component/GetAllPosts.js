@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import { app } from "../../../firebase/fb.js";
 import deletePost from "../../../functions/deletePost.js";
 
-const GetAllPosts = () => {
+const GetAllPosts = ({
+  user,
+  isModalEdit,
+  setIsModalEdit,
+  editPost,
+  setEditPost,
+}) => {
   const [docus, setDocus] = useState([]);
 
   useEffect(() => {
@@ -32,12 +38,21 @@ const GetAllPosts = () => {
                 </div>
                 <div className="col-11">
                   <h4 className="card-title text-dark">{post.title}</h4>
+                  <small>Author: {user.email}</small>
                   <p className="card-text text-dark">{post.content}</p>
                 </div>
               </div>
               <div className="row text-center">
                 <div className="col">
-                  <button className="btn btn-secondary">Edit</button>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => {
+                      setEditPost({ ...post });
+                      setIsModalEdit(true);
+                    }}
+                  >
+                    Edit
+                  </button>
                 </div>
                 <div className="col">
                   <button

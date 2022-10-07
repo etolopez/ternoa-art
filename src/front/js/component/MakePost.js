@@ -3,10 +3,9 @@ import { useState } from "react";
 import { app } from "../../../firebase/fb.js";
 import { Form, Button } from "react-bootstrap";
 
-const MakePost = () => {
+const MakePost = ({ user }) => {
   // const [post, setPost] = useState(false);
   const [urlArchive, setUrlArchive] = useState("");
-  const [docus, setDocus] = useState([]);
 
   const archiveHandler = async (e) => {
     const archive = e.target.files[0];
@@ -60,6 +59,7 @@ const MakePost = () => {
         <Form.Group>
           <Form.Label className="mb-2">Name the image</Form.Label>
           <Form.Control
+            id="nombre"
             type="text"
             name="nombre"
             placeholder="image name (for reference)"
@@ -67,13 +67,19 @@ const MakePost = () => {
         </Form.Group>
         <Form.Group>
           <Form.Label className="mt-2">Name your Post</Form.Label>
-          <Form.Control type="text" name="title" placeholder="Post title" />
+          <Form.Control
+            id="title"
+            type="text"
+            name="title"
+            placeholder="Post title"
+          />
         </Form.Group>
         <Form.Group>
           <Form.Label className="mt-2">
             Write something cool about the art!
           </Form.Label>
           <Form.Control
+            id="content"
             className="py-5"
             type="text"
             name="content"

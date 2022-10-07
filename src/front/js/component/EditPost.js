@@ -1,119 +1,104 @@
 import React from "react";
 import { useState } from "react";
-import { app } from "../../../firebase/fb.js";
 import { Modal, Stack, Form, Button } from "react-bootstrap";
+import editPostFn from "../../../functions/editPostFn";
 
-const EditPost = () => {
-  // const [post, setPost] = useState(false);
-  const [urlArchive, setUrlArchive] = useState("");
-  const [docus, setDocus] = useState([]);
+const EditPost = ({
+  user,
+  isModalEdit,
+  setIsModalEdit,
+  editPost,
+  setEditPost,
+}) => {
+  function editPostModal() {
+    const archiveName = document.getElementById("nombre").value;
+    const title = document.getElementById("title").value;
+    const content = document.getElementById("content").value;
+    const postInfo = { archiveName, content, title };
 
-  const archiveHandler = async (e) => {
-    const archive = e.target.files[0];
-    const storageRef = app.storage().ref();
-    const archivePath = storageRef.child(archive.name);
-    await archivePath.put(archive);
-    console.log("archivo cargado", archive.name);
-    const urlLink = await archivePath.getDownloadURL();
-    setUrlArchive(urlLink);
-  };
+    editPostFn(postInfo);
+    setEditPost(null);
+    setIsModalEdit(false);
+  }
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
-    const archiveName = e.target.nombre.value;
-    const title = e.target.title.value;
-    const content = e.target.content.value;
-
-    if (!archiveName) {
-      alert("Please add a name");
-      return;
-    }
-    if (!title) {
-      alert("Please write a title to your post");
-      return;
-    }
-    if (!content) {
-      alert("Write and awesome post!");
-      return;
-    }
-
-    const collectionRef = app.firestore().collection("archive");
-    const docu = await collectionRef.doc(archiveName).set({
-      nombre: archiveName,
-      url: urlArchive,
-      title: title,
-      content: content,
-    });
-    window.location = "/";
-  };
+  const [postState, setPostState] = useState({ ...editPost });
 
   return (
-    <div className="container">
-      
-       <Modal
-      show={isModalEditar}
+    <Modal
+      show={isModalEdit}
       onHide={() => {
-        setIsModalEditar(false);
-        setProductoEditar(null);
+        editPostModal(null);
+        setIsModalEdit(false);
       }}
     >
-
-       <Modal.Header>
-        <Modal.Title>Editar producto</Modal.Title>
+      <Modal.Header>
+        <Modal.Title className="text-dark">Edit post</Modal.Title>
       </Modal.Header>
+      <Modal.Body>
+        <Form>
+          <Stack>
+            <Form.Label className="mb-2 text-dark">Name the image</Form.Label>
+            <Form.Control
+              type="text"
+              id="nombre"
+              placeholder="image name (for reference)"
+              onChange={(e) =>
+                setPostState({
+                  ...postState,
+                  archiveName: e.target.value,
+                })
+              }
+              value={postState?.archiveName}
+            />
 
-      <Form onSubmit={submitHandler}>
-        <Form.Group>
-          <Form.Control
-            className="mb-5"
-            type="file"
-            onChange={archiveHandler}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label className="mb-2">Name the image</Form.Label>
-          <Form.Control
-            type="text"
-            name="nombre"
-            placeholder="image name (for reference)"
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label className="mt-2">Name your Post</Form.Label>
-          <Form.Control type="text" name="title" placeholder="Post title" />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label className="mt-2">
-            Write something cool about the art!
-          </Form.Label>
-          <Form.Control
-            className="py-5"
-            type="text"
-            name="content"
-            placeholder="Write a post"
-          />
-        </Form.Group>
+            <Form.Label className="mt-2 text-dark">Name your Post</Form.Label>
+            <Form.Control
+              type="text"
+              id="title"
+              placeholder="Post title"
+              onChange={(e) => {
+                setPostState({
+                  ...postState,
+                  title: e.target.value,
+                });
+              }}
+              value={postState?.title}
+            />
 
-        <Button variant="primary" className="mt-4" type="submit">
-          Post
-        </Button>
-      </Form>
-      <Button
+            <Form.Label className="mt-2 text-dark">
+              Write something cool about the art!
+            </Form.Label>
+            <Form.Control
+              className="py-5"
+              id="content"
+              type="text"
+              placeholder="Write a post"
+              onChange={(e) => {
+                setPostState({
+                  ...postState,
+                  content: e.target.value,
+                });
+              }}
+              value={postState?.content}
+            />
+          </Stack>
+        </Form>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button
           variant="secondary"
           onClick={() => {
-            setIsModalEditar(false);
-            setProductoEditar(null);
+            setIsModalEdit(false);
+            editPostModal(null);
           }}
         >
           Cancelar
         </Button>
-        <Button variant="primary" onClick={editarProductoModal}>
-          Editar
+        <Button variant="primary" onClick={editPostModal}>
+          Edit
         </Button>
       </Modal.Footer>
     </Modal>
-
-    </div>
   );
 };
 
